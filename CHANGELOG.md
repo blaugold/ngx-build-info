@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/blaugold/ngx-build-info/compare/v1.0.2...v1.0.3) (2020-02-25)
+
+
+### Bug Fixes
+
+* include builder input schema in npm package ([8579f02](https://github.com/blaugold/ngx-build-info/commit/8579f02bfb31213e57be90ac1a5dcb33c38122a5))
+
 ### [1.0.2](https://github.com/blaugold/ngx-build-info/compare/v1.0.1...v1.0.2) (2020-02-25)
 
 
