@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/blaugold/ngx-build-info.git"
   },
+  "keywords": ["Angular", "CLI", "Builder", "Build", "Info", "CI"],
   "scripts": {
     "postinstall": "cd e2e/app && npm install",
     "test": "ts-mocha -p tsconfig.spec.json src/**/*.spec.ts",
