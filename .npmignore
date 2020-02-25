@@ -1,8 +1,10 @@
+.github/
 .idea/
 .tmp/
-node_modules/
-src/
 .gitignore
+e2e/
+node_modules/
+package-lock.json
+src/
 tsconfig.json
 tsconfig.spec.json
-yarn.lock
