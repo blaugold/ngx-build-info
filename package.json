@@ -1,0 +1,38 @@
+{
+  "name": "ngx-build-info",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gabriel Terwesten <gabriel@terwesten.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blaugold/ngx-build-info.git"
+  },
+  "scripts": {
+    "postinstall": "cd e2e/app && npm install",
+    "test": "ts-mocha -p tsconfig.spec.json src/**/*.spec.ts",
+    "e2e": "cd e2e/app && ng run app:build-info",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -p tsconfig.json -w",
+    "clean": "rimraf dist typings .tmp"
+  },
+  "builders": "builders.json",
+  "dependencies": {
+    "@angular-devkit/architect": "^0.900.3",
+    "@angular-devkit/core": "^9.0.3",
+    "fs-extra": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.9",
+    "@types/fs-extra": "^8.1.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^13.7.4",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.1",
+    "rimraf": "^3.0.2",
+    "standard-version": "^7.1.0",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2"
+  }
+}

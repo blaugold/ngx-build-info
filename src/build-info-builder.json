@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "output": {
+      "type": "string",
+      "description": "Name of the build info file relative to the project root. The default is '{sourceRoot}/environments/build-info.ts'."
+    }
+  }
+}
