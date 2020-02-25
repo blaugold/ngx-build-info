@@ -14,7 +14,8 @@
     "e2e": "cd e2e/app && node_modules/.bin/ng run app:build-info",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json -w",
-    "clean": "rimraf dist typings .tmp"
+    "clean": "rimraf dist typings .tmp",
+    "release": "standard-version"
   },
   "builders": "builders.json",
   "dependencies": {
