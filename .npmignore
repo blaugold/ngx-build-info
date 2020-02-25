@@ -5,6 +5,9 @@
 e2e/
 node_modules/
 package-lock.json
-src/
+src/*
+!src/*.schema.json
 tsconfig.json
 tsconfig.spec.json
+
+

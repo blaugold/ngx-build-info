@@ -2,7 +2,7 @@
   "builders": {
     "build-info": {
       "implementation": "./dist/build-info-builder.js",
-      "schema": "./src/build-info-builder.json",
+      "schema": "./src/build-info-builder.schema.json",
       "description": "Generates build info for an app."
     }
   }
