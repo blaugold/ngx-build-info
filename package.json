@@ -17,7 +17,6 @@
     "CI"
   ],
   "scripts": {
-    "postinstall": "cd e2e/app && npm install",
     "test": "ts-mocha -p tsconfig.spec.json src/**/*.spec.ts",
     "e2e": "cd e2e/app && node_modules/.bin/ng run app:build-info",
     "build": "tsc -p tsconfig.json",
