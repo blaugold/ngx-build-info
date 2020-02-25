@@ -5,6 +5,7 @@ import { JsonObject, schema } from '@angular-devkit/core';
 import { expect } from 'chai';
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import * as gitRepoInfo from 'git-repo-info';
 
 describe('Build Info Builder', () => {
   let architect: Architect;
@@ -26,7 +27,7 @@ describe('Build Info Builder', () => {
 
 
   it('should put build-info.ts in environments dir per default', async () => {
-    const { metadata, target } = await prepareProject({ name: 'a', version: '1.0.0' });
+    const { defaultBuildInfoFile, target } = await prepareProject({ name: 'a', version: '1.0.0' });
 
     architectHost.addTarget(target, 'ngx-build-info:build-info');
 
@@ -34,14 +35,7 @@ describe('Build Info Builder', () => {
     await run.result;
     await run.stop();
 
-    const buildInfoFile = path.resolve(
-      architectHost.workspaceRoot,
-      metadata.root,
-      metadata.sourceRoot,
-      'environments/build-info.ts',
-    );
-
-    await import(buildInfoFile);
+    await import(defaultBuildInfoFile);
   });
 
   it('should put build-info in output relative to project root', async () => {
@@ -63,7 +57,7 @@ describe('Build Info Builder', () => {
   });
 
   it('should source name and version from package.json', async () => {
-    const { metadata, target } = await prepareProject({ name: 'a', version: '1.0.0' });
+    const { target, defaultBuildInfoFile } = await prepareProject({ name: 'a', version: '1.0.0' });
 
     architectHost.addTarget(target, 'ngx-build-info:build-info');
 
@@ -71,16 +65,44 @@ describe('Build Info Builder', () => {
     await run.result;
     await run.stop();
 
-    const buildInfoFile = path.resolve(
-      architectHost.workspaceRoot,
-      metadata.root,
-      metadata.sourceRoot,
-      'environments/build-info.ts',
-    );
-
-    const { BUILD_INFO } = await import(buildInfoFile);
+    const { BUILD_INFO } = await import(defaultBuildInfoFile);
     expect(BUILD_INFO.name).to.eq('a');
     expect(BUILD_INFO.version).to.eq('1.0.0');
+  });
+
+  it('should include git repo info', async () => {
+    const { target, defaultBuildInfoFile } = await prepareProject({ name: 'a', version: '1.0.0' });
+
+    architectHost.addTarget(target, 'ngx-build-info:build-info');
+
+    const run = await architect.scheduleTarget(target);
+    await run.result;
+    await run.stop();
+
+    const gitInfo = gitRepoInfo();
+
+    const { BUILD_INFO } = await import(defaultBuildInfoFile);
+    expect(BUILD_INFO.branch).to.eq(gitInfo.branch);
+    expect(BUILD_INFO.rev).to.eq(gitInfo.abbreviatedSha);
+    expect(BUILD_INFO.tag).to.eq(gitInfo.tag);
+    expect(BUILD_INFO.commitsSinceLastTag).to.eq(gitInfo.commitsSinceLastTag);
+    expect(BUILD_INFO.authorDate).to.eq(gitInfo.authorDate);
+  });
+
+  it('should include build number', async () => {
+    const { target, defaultBuildInfoFile } = await prepareProject({ name: 'a', version: '1.0.0' });
+    const buildNumber = 42;
+
+    process.env['BUILD_NUMBER'] = buildNumber.toString();
+
+    architectHost.addTarget(target, 'ngx-build-info:build-info');
+
+    const run = await architect.scheduleTarget(target);
+    await run.result;
+    await run.stop();
+
+    const { BUILD_INFO } = await import(defaultBuildInfoFile);
+    expect(BUILD_INFO.buildNumber).to.eq(buildNumber);
   });
 
   async function prepareProject({ name, version }: { name: string, version: string }) {
@@ -94,7 +116,14 @@ describe('Build Info Builder', () => {
 
     projects[target.project] = metadata;
 
-    return { dir, target, metadata };
+    const defaultBuildInfoFile = path.resolve(
+      architectHost.workspaceRoot,
+      metadata.root,
+      metadata.sourceRoot,
+      'environments/build-info.ts',
+    );
+
+    return { dir, target, metadata, defaultBuildInfoFile };
   }
 
   async function makeProjectDir(name: string) {

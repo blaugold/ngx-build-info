@@ -5,7 +5,7 @@
   "properties": {
     "output": {
       "type": "string",
-      "description": "Name of the build info file relative to the project root. The default is '{sourceRoot}/environments/build-info.ts'."
+      "description": "Name of the build info file relative to the project root. The default is '{projectRoot}/{sourceRoot}/environments/build-info.ts'."
     }
   }
 }
