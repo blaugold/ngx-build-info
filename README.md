@@ -4,7 +4,7 @@ An Angular CLI builder which generates a build info file.
 
 ## Installation
 
-Install the build:
+Install the builder:
 
 ```shell script
 npm install -D ngx-build-info
