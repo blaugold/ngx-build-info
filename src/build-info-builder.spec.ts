@@ -4,8 +4,8 @@ import { TestingArchitectHost } from '@angular-devkit/architect/testing';
 import { JsonObject, schema } from '@angular-devkit/core';
 import { expect } from 'chai';
 import * as fs from 'fs-extra';
-import * as path from 'path';
 import * as gitRepoInfo from 'git-repo-info';
+import * as path from 'path';
 
 describe('Build Info Builder', () => {
   let architect: Architect;
@@ -84,14 +84,15 @@ describe('Build Info Builder', () => {
     const { BUILD_INFO } = await import(defaultBuildInfoFile);
     expect(BUILD_INFO.branch).to.eq(gitInfo.branch);
     expect(BUILD_INFO.rev).to.eq(gitInfo.abbreviatedSha);
-    expect(BUILD_INFO.tag).to.eq(gitInfo.tag);
-    expect(BUILD_INFO.commitsSinceLastTag).to.eq(gitInfo.commitsSinceLastTag);
+    expect(BUILD_INFO.tag).to.eq(gitInfo.lastTag);
+    expect(BUILD_INFO.commitsSinceLastTag)
+      .to.eq(gitInfo.commitsSinceLastTag == Infinity ? null : gitInfo.commitsSinceLastTag);
     expect(BUILD_INFO.authorDate).to.eq(gitInfo.authorDate);
   });
 
   it('should include build number', async () => {
     const { target, defaultBuildInfoFile } = await prepareProject({ name: 'a', version: '1.0.0' });
-    const buildNumber = 42;
+    const buildNumber                      = 42;
 
     process.env['BUILD_NUMBER'] = buildNumber.toString();
 
