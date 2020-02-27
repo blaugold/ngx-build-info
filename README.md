@@ -1,3 +1,6 @@
+![CI](https://github.com/blaugold/ngx-build-info/workflows/CI/badge.svg)
+![NPM](https://img.shields.io/npm/v/ngx-build-info)
+
 # ngx-build-info
 
 An Angular CLI builder which generates a build info file.
