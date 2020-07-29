@@ -1,6 +1,6 @@
 {
   "name": "ngx-build-info",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "author": "Gabriel Terwesten <gabriel@terwesten.net>",
   "license": "MIT",
