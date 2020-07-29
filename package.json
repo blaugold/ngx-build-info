@@ -26,22 +26,22 @@
   },
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "^0.900.3",
-    "@angular-devkit/core": "^9.0.3",
-    "fs-extra": "^8.1.0",
+    "@angular-devkit/architect": "^0.1000.4",
+    "@angular-devkit/core": "^10.0.4",
+    "fs-extra": "^9.0.1",
     "git-repo-info": "^2.1.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.9",
-    "@types/fs-extra": "^8.1.0",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^13.7.4",
+    "@types/chai": "^4.2.12",
+    "@types/fs-extra": "^9.0.1",
+    "@types/mocha": "^7.0.0",
+    "@types/node": "^14.0.27",
     "chai": "^4.2.0",
-    "mocha": "^6.0.1",
+    "mocha": "^7.0.0",
     "rimraf": "^3.0.2",
-    "standard-version": "^8.0.1",
-    "ts-mocha": "^6.0.0",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.2"
+    "standard-version": "^8.0.2",
+    "ts-mocha": "^7.0.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
   }
 }
