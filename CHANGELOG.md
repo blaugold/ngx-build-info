@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/blaugold/ngx-build-info/compare/v1.0.5...v1.1.0) (2021-05-17)
+
+
+### Features
+
+* upgrade to angular v12 ([a8375d1](https://github.com/blaugold/ngx-build-info/commit/a8375d1c34d9133b30c2ef351325be71aa5b658c))
+
 ### [1.0.5](https://github.com/blaugold/ngx-build-info/compare/v1.0.4...v1.0.5) (2020-09-04)
 
 ### [1.0.4](https://github.com/blaugold/ngx-build-info/compare/v1.0.3...v1.0.4) (2020-07-29)
